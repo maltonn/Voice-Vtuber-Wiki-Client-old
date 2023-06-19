@@ -21,7 +21,8 @@
     "eject": "react-scripts eject",
     "rm": "rmdir  /s /q docs",
     "move": "move build docs",
-    "deploy": "npm run rm && npm run build && npm run move && git push origin master"
+    "git": "git add . && git commit -m updateDoc && git push origin master",
+    "deploy": "npm run rm && npm run build && npm run move && npm run git"
   },
   "eslintConfig": {
     "extends": [
