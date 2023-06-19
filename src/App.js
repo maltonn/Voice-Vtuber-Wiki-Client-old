@@ -11,7 +11,7 @@ import "tailwindcss/tailwind.css"
 import PCA from 'pca-js';
 
 import Board from './components/board';
-import Circle from './components/circle';g
+import Circle from './components/circle';
 import DetailTab from './components/detail_tab';
 import static_lst from "./static"
 import title from './title.png'
