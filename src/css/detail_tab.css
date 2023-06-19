@@ -1,0 +1,41 @@
+.detail-tab {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100vh;  /* view height - it will cover the full height of the page */
+    background-color: #f9f9f9;  /* adjust as needed */
+    overflow: hidden;  /* to allow the content to scroll if it overflows */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);  /* optional: adds a bit of shadow */
+    padding: 20px;
+}
+
+.detail-tab-image {
+    width: 100%;  /* makes the image responsive */
+    overflow: hidden;  /* clips the image if it is bigger than its container */
+    
+}
+
+.detail-tab-image img {
+    width: 100%;  /* makes the image fill its container */
+    height: auto;  /* keeps the aspect ratio of the image */
+    transition-duration: 500ms;
+}
+.detail-tab-image img:hover{
+    transform: scale(1.1);
+}
+
+.detail-tab-text {
+    padding: 20px 0;  /* adds some space above and below the text */
+}
+
+.detail-tab-text-title {
+    font-size: 2em;  /* makes the title larger */
+    font-weight: bold;  /* makes the title bold */
+    margin-bottom: 10px;  /* adds some space below the title */
+}
+
+.detail-tab-text-description {
+    font-size: 1em;  /* regular text size */
+    color: #666;  /* grey text color */
+}

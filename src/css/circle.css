@@ -1,0 +1,26 @@
+:root{
+    --size:100px;
+}
+.circle{
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    top: calc(50% + 50vh - var(--size) / 2);
+    left: calc(50% + 50vw - var(--size) / 2);
+
+    border-radius: 50%;
+    border: 3px solid orange;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 500ms;
+}
+.circle:hover{
+    transform: scale(1.2);
+}
+
+.circle > img{
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,8 @@
+.board{
+    position: absolute;
+    width: 20000px;
+    height: 20000px;
+    background-color:#eee;
+    background-image: url("../../public/background.png");
+    transform-origin: 0 0;
+}
