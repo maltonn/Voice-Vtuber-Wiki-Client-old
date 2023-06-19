@@ -8,7 +8,6 @@ import { db } from './libs/firebase';
 import './css/App.css';
 
 import "tailwindcss/tailwind.css"
-import "flowbite-react"
 import PCA from 'pca-js';
 
 import Board from './components/board';
