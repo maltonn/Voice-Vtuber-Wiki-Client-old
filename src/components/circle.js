@@ -9,7 +9,13 @@ export default function Circle(props) {
     if (props.data.id == undefined) return (<div></div>)
     return (
         // <a href={`https://www.youtube.com/channel/${props.data.id}`} target='_blank'>
-            <div onClick={onClickFunc} className="circle" style={{transform:`translate(${props.data["posx"]}px,${props.data["posy"]}px)`}}>
+            <div             
+                onClick={onClickFunc} className="circle" 
+                style={{
+                    transform:`
+                        translate(${props.data["posx"]}px,${props.data["posy"]}px)
+                        scale(${Math.min(1/props.boardTransform.scale,2)})
+                    `}}>
                 <img src={props.data.channel_thumbnail} />
             </div>
         // </a>

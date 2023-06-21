@@ -17,9 +17,6 @@ import static_lst from "./static"
 import title from './title.png'
 
 function CalcVectorDistanceMatrix(lst) {//lstはデータがすべて入ったやつ
-
-  const F=(x)=>1/(1+2**(-5*(2*x-1))) //是正関数：cos類似度が0.5あたりに多く集中することを防ぐ
-
   const DistMatrix = []
   for (let i = 0; i < lst.length; i++) {
     DistMatrix.push([])
@@ -27,29 +24,30 @@ function CalcVectorDistanceMatrix(lst) {//lstはデータがすべて入った�
       DistMatrix[i].push(0)
     }
   }
-  //cos類似度の計算
-  const lstc = JSON.parse(JSON.stringify(lst));//破壊的変更を行うのでコピー
-  //embeddingをノルム1に正規化
-  for (let i = 0; i < lstc.length; i++) {
-    let norm = 0
-    for (let j = 0; j < lstc[i]["embedding"].length; j++) {
-      norm += lstc[i]["embedding"][j] ** 2
-    }
-    norm = norm ** 0.5
-    for (let j = 0; j < lstc[i]["embedding"].length; j++) {
-      lstc[i]["embedding"][j] /= norm
-    }
-  }
-  for (let i = 0; i < lstc.length; i++) {
-    for (let j = 0; j < lstc.length; j++) {
-      let sim = 0
-      for (let k = 0; k < lstc[i]["embedding"].length; k++) {
-        sim += lstc[i]["embedding"][k] * lstc[j]["embedding"][k]
+  for(let i=0;i<lst.length;i++){
+    for(let j=0;j<lst.length;j++){
+      for(let k=0;k<lst[i]["embedding"].length;k++){
+        DistMatrix[i][j]+=(lst[i]["embedding"][k]-lst[j]["embedding"][k])**2
       }
-      DistMatrix[i][j] =-Math.log(sim+0.01)
+      DistMatrix[i][j]=DistMatrix[i][j]**0.5
     }
   }
-  console.log(DistMatrix)
+  
+  let mx=-1
+  for(let i=0;i<lst.length;i++){
+    for(let j=0;j<lst.length;j++){
+      if(mx<DistMatrix[i][j]){
+        mx=DistMatrix[i][j]
+      }
+    }
+  }
+  for(let i=0;i<lst.length;i++){
+    for(let j=0;j<lst.length;j++){
+      DistMatrix[i][j]/=mx
+      DistMatrix[i][j]=DistMatrix[i][j]
+    }
+  }
+
   return DistMatrix
 }
 
@@ -161,23 +159,27 @@ function App() {
 
     //キャラからの距離がembeddingのcos類似度になるようにスケール
     const dist = vectorDistanceMatrix[index]
+    const mn_dist=Math.min(...dist.filter((_,i)=>i!=index))
+    console.log(dist)
+    console.log(mn_dist)
     for(let i=0;i<dist.length;i++){
+
       if(i==index){
         continue
       }
-
-      let r=dist[i]
+      
+      const scale=1000
+      const r=(dist[i] - mn_dist )*scale + 100
 
       let dx=Vtubers[i]["posx"]-C["posx"]
       let dy=Vtubers[i]["posy"]-C["posy"]
-      let norm=(dx**2+dy**2)**0.5
+      const norm=(dx**2+dy**2)**0.5
       dx/=norm
       dy/=norm
 
-      let scale=500
 
-      Vtubers[i]["posx"]=C["posx"]+dx*r*scale
-      Vtubers[i]["posy"]=C["posy"]+dy*r*scale
+      Vtubers[i]["posx"]=C["posx"]+dx*r
+      Vtubers[i]["posy"]=C["posy"]+dy*r
     }
 
 
@@ -200,6 +202,7 @@ function App() {
               data={vt}
 
               onCircleClick={onCircleClick}
+              boardTransform={boardTransform}
             />
           ))
         }
