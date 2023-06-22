@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Voice-Vtuber-Wiki-Client/static/css/main.b5f91de1.css",
-    "main.js": "/Voice-Vtuber-Wiki-Client/static/js/main.32675dd9.js",
+    "main.css": "/Voice-Vtuber-Wiki-Client/static/css/main.bc9d7d11.css",
+    "main.js": "/Voice-Vtuber-Wiki-Client/static/js/main.c02fdbcd.js",
     "static/media/title.png": "/Voice-Vtuber-Wiki-Client/static/media/title.eb2b3b9e3bcd0a791824.png",
     "index.html": "/Voice-Vtuber-Wiki-Client/index.html",
-    "main.b5f91de1.css.map": "/Voice-Vtuber-Wiki-Client/static/css/main.b5f91de1.css.map",
-    "main.32675dd9.js.map": "/Voice-Vtuber-Wiki-Client/static/js/main.32675dd9.js.map"
+    "main.bc9d7d11.css.map": "/Voice-Vtuber-Wiki-Client/static/css/main.bc9d7d11.css.map",
+    "main.c02fdbcd.js.map": "/Voice-Vtuber-Wiki-Client/static/js/main.c02fdbcd.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5f91de1.css",
-    "static/js/main.32675dd9.js"
+    "static/css/main.bc9d7d11.css",
+    "static/js/main.c02fdbcd.js"
   ]
 }
