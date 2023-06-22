@@ -16,26 +16,6 @@ import DetailTab from './components/detail_tab';
 import static_lst from "./static"
 import title from './title.png'
 
-function argsort(array) {
-  let arrayObject = array.map((value, index) => { return {value: value, index: index} });
-
-  arrayObject.sort((a, b) => {
-      if (a.value < b.value) {
-          return -1;
-      } else if (a.value > b.value) {
-          return 1;
-      } else {
-          return 0;
-      }
-  });
-
-  let argIndices = arrayObject.map(data => data.index);
-
-  return argIndices;
-}
-
-
-
 function CalcVectorDistanceMatrix(lst) {//lstはデータがすべて入ったやつ
   const DistMatrix = []
   for (let i = 0; i < lst.length; i++) {
@@ -180,7 +160,8 @@ function App() {
     //中心キャラの回りに良い感じに配置
     const dists = vectorDistanceMatrix[index]
     const mn_dist=Math.min(...dists.filter((_,i)=>i!=index))
-    for(let i of Argsort(dists)){
+    for(let i=0;i<dists.length;i++){
+
       if(i==index){
         continue
       }
