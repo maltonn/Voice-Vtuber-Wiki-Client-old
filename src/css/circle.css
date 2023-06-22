@@ -16,9 +16,9 @@
     align-items: center;
     transition-duration: 500ms;
 }
-.circle:hover{
+/* .circle:hover{
     transform: scale(1.2);
-}
+} */
 
 .circle > img{
     width: 100%;

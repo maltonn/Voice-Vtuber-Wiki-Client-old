@@ -16,6 +16,26 @@ import DetailTab from './components/detail_tab';
 import static_lst from "./static"
 import title from './title.png'
 
+function argsort(array) {
+  let arrayObject = array.map((value, index) => { return {value: value, index: index} });
+
+  arrayObject.sort((a, b) => {
+      if (a.value < b.value) {
+          return -1;
+      } else if (a.value > b.value) {
+          return 1;
+      } else {
+          return 0;
+      }
+  });
+
+  let argIndices = arrayObject.map(data => data.index);
+
+  return argIndices;
+}
+
+
+
 function CalcVectorDistanceMatrix(lst) {//lstはデータがすべて入ったやつ
   const DistMatrix = []
   for (let i = 0; i < lst.length; i++) {
@@ -157,19 +177,16 @@ function App() {
       boardRef.current.style.transitionDuration = "0s"
     }, 500)
 
-    //キャラからの距離がembeddingのcos類似度になるようにスケール
-    const dist = vectorDistanceMatrix[index]
-    const mn_dist=Math.min(...dist.filter((_,i)=>i!=index))
-    console.log(dist)
-    console.log(mn_dist)
-    for(let i=0;i<dist.length;i++){
-
+    //中心キャラの回りに良い感じに配置
+    const dists = vectorDistanceMatrix[index]
+    const mn_dist=Math.min(...dists.filter((_,i)=>i!=index))
+    for(let i of Argsort(dists)){
       if(i==index){
         continue
       }
       
-      const scale=1000
-      const r=(dist[i] - mn_dist )*scale + 100
+      const scale=2000
+      const r=(dists[i] - mn_dist )*scale + 100
 
       let dx=Vtubers[i]["posx"]-C["posx"]
       let dy=Vtubers[i]["posy"]-C["posy"]

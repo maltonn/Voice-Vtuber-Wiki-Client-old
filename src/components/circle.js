@@ -14,7 +14,7 @@ export default function Circle(props) {
                 style={{
                     transform:`
                         translate(${props.data["posx"]}px,${props.data["posy"]}px)
-                        scale(${Math.min(1/props.boardTransform.scale,2)})
+                        scale(${Math.min(1/props.boardTransform.scale**0.8,2)})
                     `}}>
                 <img src={props.data.channel_thumbnail} />
             </div>

@@ -1,41 +1,43 @@
+/* 全体のスタイルを定義します。 */
+
+/* .detail-tab クラスを全画面の下部に配置します。 */
 .detail-tab {
+    display: flex;
+    align-items: flex-start;
     position: fixed;
-    right: 0;
-    top: 0;
-    width: 300px;
-    height: 100vh;  /* view height - it will cover the full height of the page */
-    background-color: #f9f9f9;  /* adjust as needed */
-    overflow: hidden;  /* to allow the content to scroll if it overflows */
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);  /* optional: adds a bit of shadow */
-    padding: 20px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px; /* 下部に100pxで収まるようにします。 */
+    background-color: #f8f8f8; /* 背景色を適切に調整してください。 */
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* 影を追加して立体感を出します。 */
+    box-sizing: border-box;
 }
 
-.detail-tab-image {
-    width: 100%;  /* makes the image responsive */
-    overflow: hidden;  /* clips the image if it is bigger than its container */
-    
+/* リンクと画像のスタイルを定義します。 */
+.detail-tab .detail-tab-image {
+    flex-shrink: 0; /* フレックスアイテムが縮むことを防ぎます。 */
+    margin-right: 15px; /* 画像とテキストの間隔を作ります。 */
+}
+.detail-tab .detail-tab-image img {
+    width: 100px; /* 画像の大きさを定義します。 */
+    height: 100px; /* 画像の大きさを定義します。 */
+    object-fit: cover; /* 画像のアスペクト比を保ちます。 */
+    border-radius: 5px; /* 画像の角を丸くします。 */
+    transition-duration: 300ms;
 }
 
-.detail-tab-image img {
-    width: 100%;  /* makes the image fill its container */
-    height: auto;  /* keeps the aspect ratio of the image */
-    transition-duration: 500ms;
+/* テキストのスタイルを定義します。 */
+.detail-tab .detail-tab-text {
+    flex-grow: 1; /* テキスト領域が残りのスペースをすべて占めるようにします。 */
 }
-.detail-tab-image img:hover{
-    transform: scale(1.1);
+.detail-tab .detail-tab-text-title {
+    font-size: 18px; /* タイトルのフォントサイズを設定します。 */
+    font-weight: bold; /* タイトルのフォントを太くします。 */
+    margin-bottom: 5px; /* タイトルと説明文の間隔を作ります。 */
 }
-
-.detail-tab-text {
-    padding: 20px 0;  /* adds some space above and below the text */
-}
-
-.detail-tab-text-title {
-    font-size: 2em;  /* makes the title larger */
-    font-weight: bold;  /* makes the title bold */
-    margin-bottom: 10px;  /* adds some space below the title */
-}
-
-.detail-tab-text-description {
-    font-size: 1em;  /* regular text size */
-    color: #666;  /* grey text color */
+.detail-tab .detail-tab-text-description {
+    font-size: 14px; /* 説明文のフォントサイズを設定します。 */
+    color: #666; /* 説明文の色を設定します。 */
 }
