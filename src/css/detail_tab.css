@@ -8,36 +8,62 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 120px; /* 下部に100pxで収まるようにします。 */
-    background-color: #f8f8f8; /* 背景色を適切に調整してください。 */
+    height: 120px;
+    /* 下部に100pxで収まるようにします。 */
+    background-color: #f8f8f8;
+    /* 背景色を適切に調整してください。 */
     padding: 10px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* 影を追加して立体感を出します。 */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    /* 影を追加して立体感を出します。 */
     box-sizing: border-box;
+    overflow: hidden;
 }
+
 
 /* リンクと画像のスタイルを定義します。 */
 .detail-tab .detail-tab-image {
-    flex-shrink: 0; /* フレックスアイテムが縮むことを防ぎます。 */
-    margin-right: 15px; /* 画像とテキストの間隔を作ります。 */
+    flex-shrink: 0;
+    /* フレックスアイテムが縮むことを防ぎます。 */
+    margin-right: 15px;
+    /* 画像とテキストの間隔を作ります。 */
 }
+
 .detail-tab .detail-tab-image img {
-    width: 100px; /* 画像の大きさを定義します。 */
-    height: 100px; /* 画像の大きさを定義します。 */
-    object-fit: cover; /* 画像のアスペクト比を保ちます。 */
-    border-radius: 5px; /* 画像の角を丸くします。 */
+    width: 100px;
+    /* 画像の大きさを定義します。 */
+    height: 100px;
+    /* 画像の大きさを定義します。 */
+    object-fit: cover;
+    /* 画像のアスペクト比を保ちます。 */
+    border-radius: 5px;
+    /* 画像の角を丸くします。 */
     transition-duration: 300ms;
 }
 
 /* テキストのスタイルを定義します。 */
 .detail-tab .detail-tab-text {
-    flex-grow: 1; /* テキスト領域が残りのスペースをすべて占めるようにします。 */
+    flex-grow: 1;
+    /* テキスト領域が残りのスペースをすべて占めるようにします。 */
 }
+
 .detail-tab .detail-tab-text-title {
-    font-size: 18px; /* タイトルのフォントサイズを設定します。 */
-    font-weight: bold; /* タイトルのフォントを太くします。 */
-    margin-bottom: 5px; /* タイトルと説明文の間隔を作ります。 */
+    font-size: 18px;
+    /* タイトルのフォントサイズを設定します。 */
+    font-weight: bold;
+    /* タイトルのフォントを太くします。 */
+    margin-bottom: 5px;
+    /* タイトルと説明文の間隔を作ります。 */
 }
+
 .detail-tab .detail-tab-text-description {
-    font-size: 14px; /* 説明文のフォントサイズを設定します。 */
-    color: #666; /* 説明文の色を設定します。 */
+    font-size: 14px;
+    /* 説明文のフォントサイズを設定します。 */
+    color: #666;
+    /* 説明文の色を設定します。 */
+    overflow: auto;
+    height: 80px;
+    scrollbar-width: none;
+}
+.detail-tab .detail-tab-text-description ::-webkit-scrollbar {
+    display: none;
 }

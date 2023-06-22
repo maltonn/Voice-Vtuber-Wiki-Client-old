@@ -13,6 +13,8 @@ import PCA from 'pca-js';
 import Board from './components/board';
 import Circle from './components/circle';
 import DetailTab from './components/detail_tab';
+import Sidebar from './components/sidebar';
+
 import static_lst from "./static"
 import title from './title.png'
 
@@ -60,7 +62,7 @@ function App() {
 
   //データのロード
   useEffect(() => {
-    const from_firebase = false
+    const from_firebase = true
 
     if (from_firebase) {
       const lst = []
@@ -205,9 +207,11 @@ function App() {
           ))
         }
       </Board>
+      <Sidebar></Sidebar>
       <DetailTab
         data={detailingIndex == undefined ? undefined : Vtubers[detailingIndex]}
       />
+      
       <img className="title-image" src={title}></img>
     </div>
   );

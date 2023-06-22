@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import '../css/detail_tab.css';
 
 export default function DetailTab(props) {
-
-
     if (props.data == undefined) return (<div></div>)
     return (<a href={`https://www.youtube.com/channel/${props.data.id}`} target='_blank'>
         <div className="detail-tab">
