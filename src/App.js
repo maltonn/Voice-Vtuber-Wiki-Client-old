@@ -78,7 +78,7 @@ function App() {
 
   //データのロード
   useEffect(() => {
-    const from_firebase = false
+    const from_firebase = true
 
     if (from_firebase) {
       const lst = []
