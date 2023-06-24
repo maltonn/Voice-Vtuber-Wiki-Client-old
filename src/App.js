@@ -18,6 +18,22 @@ import Sidebar from './components/sidebar';
 import static_lst from "./static"
 import title from './title.png'
 
+function Argsort(array) {
+  let arrayObject = array.map((value, index) => { return {value: value, index: index} });
+  arrayObject.sort((a, b) => {
+      if (a.value < b.value) {
+          return -1;
+      } else if (a.value > b.value) {
+          return 1;
+      } else {
+          return 0;
+      }
+  });
+
+  let argIndices = arrayObject.map(data => data.index);
+
+  return argIndices;
+}
 function CalcVectorDistanceMatrix(lst) {//lstはデータがすべて入ったやつ
   const DistMatrix = []
   for (let i = 0; i < lst.length; i++) {
@@ -62,7 +78,7 @@ function App() {
 
   //データのロード
   useEffect(() => {
-    const from_firebase = true
+    const from_firebase = false
 
     if (from_firebase) {
       const lst = []
@@ -140,7 +156,6 @@ function App() {
 
   }, [])
 
-
   //キャラクタークリック時の処理
   const boardRef = useRef(null)
   const onCircleClick = (index) => {
@@ -151,7 +166,7 @@ function App() {
     //ボードの真ん中にクリックしたキャラが来るように移動
     boardRef.current.style.transitionDuration = "500ms"
     setBoardTransform({
-      x: -10000 - C["posx"] - 150,
+      x: -10000 - C["posx"],
       y: -10000 - C["posy"],
       scale: 1,
     })
@@ -162,24 +177,61 @@ function App() {
     //中心キャラの回りに良い感じに配置
     const dists = vectorDistanceMatrix[index]
     const mn_dist=Math.min(...dists.filter((_,i)=>i!=index))
-    for(let i=0;i<dists.length;i++){
 
-      if(i==index){
+    const argsorted_dists=Argsort(dists)
+    for(let i=0;i<argsorted_dists.length;i++){
+      const idx=argsorted_dists[i]
+      const scale=2000
+      const r=(dists[idx] - mn_dist )*scale + 100
+
+      if(i==0){//最も近いのはそれ自身
+        continue
+      }
+      if(i==1){
+        let dx=Vtubers[argsorted_dists[i]]["posx"]-C["posx"]
+        let dy=Vtubers[argsorted_dists[i]]["posx"]-C["posx"]
+        const norm=Math.sqrt(dx**2+dy**2)
+        dx/=norm
+        dy/=norm
+
+        Vtubers[argsorted_dists[i]]["posx"]=C["posx"]+r*dx
+        Vtubers[argsorted_dists[i]]["posy"]=C["posy"]+r*dy
         continue
       }
       
-      const scale=2000
-      const r=(dists[i] - mn_dist )*scale + 100
-
-      let dx=Vtubers[i]["posx"]-C["posx"]
-      let dy=Vtubers[i]["posy"]-C["posy"]
-      const norm=(dx**2+dy**2)**0.5
-      dx/=norm
-      dy/=norm
 
 
-      Vtubers[i]["posx"]=C["posx"]+dx*r
-      Vtubers[i]["posy"]=C["posy"]+dy*r
+
+      // if(i>3){
+      //   continue
+      // }
+      const degdiv=360
+      let min_s=99999999
+      let min_j=0
+      for(let j=0;j<degdiv;j++){
+        let s=0
+        for(let k=0;k<i-1;k++){
+          const xk=Vtubers[argsorted_dists[k]]["posx"]
+          const yk=Vtubers[argsorted_dists[k]]["posy"]
+
+          const a=Math.sqrt((xk-r*Math.cos(Math.PI*2/degdiv*j))**2+(yk-r*Math.sin(Math.PI*2/degdiv*j))**2)
+          const b=(vectorDistanceMatrix[idx][argsorted_dists[k]])*scale
+          s+=(a-b)**2
+          
+          // console.log(
+          //   j,
+          //   a,
+          //   b,
+          //   a-b
+          //   )
+        }
+        if(s<min_s){
+          min_s=s
+          min_j=j
+        }
+      }
+      Vtubers[idx]["posx"]=C["posx"]+r*Math.cos(Math.PI*2/degdiv*min_j)
+      Vtubers[idx]["posy"]=C["posy"]+r*Math.sin(Math.PI*2/degdiv*min_j)
     }
 
 
