@@ -198,11 +198,7 @@ function App() {
         Vtubers[argsorted_dists[i]]["posy"]=C["posy"]+r*dy
         continue
       }
-      
-
-      const scale=5000
-      const r=(dists[i] - mn_dist )*scale + 100
-
+    
 
       // if(i>3){
       //   continue
