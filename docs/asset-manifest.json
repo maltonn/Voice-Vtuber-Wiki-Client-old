@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Voice-Vtuber-Wiki-Client/static/css/main.61c44e0c.css",
+    "main.js": "/Voice-Vtuber-Wiki-Client/static/js/main.852b4405.js",
+    "static/media/title.png": "/Voice-Vtuber-Wiki-Client/static/media/title.eb2b3b9e3bcd0a791824.png",
+    "index.html": "/Voice-Vtuber-Wiki-Client/index.html",
+    "main.61c44e0c.css.map": "/Voice-Vtuber-Wiki-Client/static/css/main.61c44e0c.css.map",
+    "main.852b4405.js.map": "/Voice-Vtuber-Wiki-Client/static/js/main.852b4405.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61c44e0c.css",
+    "static/js/main.852b4405.js"
+  ]
+}
