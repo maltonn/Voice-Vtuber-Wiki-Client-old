@@ -17,6 +17,7 @@ import Sidebar from './components/sidebar';
 
 import static_lst from "./static"
 import title from './title.png'
+import Contour from './components/contour';
 
 function CalcVectorDistanceMatrix(lst) {//lstはデータがすべて入ったやつ
   const DistMatrix = []
@@ -121,18 +122,17 @@ function App() {
         const vectors = PCA.getEigenVectors(embeddingLst);
         const base1 = vectors[0]["vector"]
         const base2 = vectors[1]["vector"]
-
         lst.forEach((vt) => {
           let elm1 = 0
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < 512; i++) {
             elm1 += vt["embedding"][i] * base1[i]
           }
           let elm2 = 0
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < 512; i++) {
             elm2 += vt["embedding"][i] * base2[i]
           }
-          vt["posx"] = elm1 * 3
-          vt["posy"] = elm2 * 3
+          vt["posx"] = elm1 / 5
+          vt["posy"] = elm2 / 5
         })
         setVectorDistanceMatrix(CalcVectorDistanceMatrix(lst))
       })();
@@ -168,7 +168,7 @@ function App() {
         continue
       }
       
-      const scale=2000
+      const scale=5000
       const r=(dists[i] - mn_dist )*scale + 100
 
       let dx=Vtubers[i]["posx"]-C["posx"]
@@ -189,11 +189,15 @@ function App() {
 
   return (
     <div className="App">
+      
       <Board
         boardTransform={boardTransform}
         setBoardTransform={setBoardTransform}
         boardRef={boardRef}
       >
+        <Contour
+          boardTransform={boardTransform}
+        ></Contour>
         {
           Vtubers.map((vt, index) => (
             <Circle
