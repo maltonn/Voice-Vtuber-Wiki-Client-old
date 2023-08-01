@@ -8,7 +8,7 @@ import { faArrowLeft, faTimes } from '@fortawesome/free-solid-svg-icons';
 export default function Sidebar() {
   const [serverRunning, setServerRunning] = useState(false);
 
-  const requestURL = "http://100.25.201.82:5000/"
+  const requestURL = "http://52.86.111.180:5000/"
   const [sidebar, setSidebar] = useState(false);
   const [url, setUrl] = useState("");
   const [sendLock, setSendLock] = useState(false);
